@@ -1,0 +1,54 @@
+{% extends 'defects/defect.html' %}
+
+{% block contents %}
+    <div class="container">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .jumbotron {
+                margin-top: 10px;
+                background-color: #738ba3;
+                padding: 2rem 1rem;
+                border-radius: 20px;
+                color: white;
+                font-size: 1.2rem;
+            }
+            h1 {
+                color: #edf0f3;
+            }
+            dt {
+                font-weight: bold;
+            }
+            dd {
+                margin-bottom: 1rem;
+            }
+        </style>
+        <div class="jumbotron">
+            <h1>Defect Description</h1>
+            <br><br>
+            <dl class="row">
+
+                <dt class="col-sm-3">Defect Name</dt>
+                <dd class="col-sm-9"> {{ defe.defect_name }} </dd>
+              
+                <dt class="col-sm-3">Defect Type</dt>
+                <dd class="col-sm-9"><p> {{ defe.defect_type }} </p></dd>
+              
+                <dt class="col-sm-3">Assigned_by</dt>
+                <dd class="col-sm-9"> {{ defe.assigned_by}} </dd>
+              
+                <dt class="col-sm-3 ">Assigned_to</dt>
+                <dd class="col-sm-9"> {{ defe.assigned_to}}  </dd>
+              
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9"><p> {{ defe.description }} </p></dd>
+
+                <dt class="col-sm-3">Priority</dt>
+                <dd class="col-sm-9"><p>  {{ defe.priority }} </p></dd>
+
+            </dl>
+        </div>
+    </div>
+    <br><br>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .container {
+        margin-top: 20px;
+    }
+
+    .jumbotron {
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 5px;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Dashboard</h1>
+
+        <p>{{ user.username }}'s Profile</p>
+        <p>Email : {{ user.email }}</p>
+        <p>Phone : {{ user.userprofile.phone }}</p>
+        <p>Address : {{ user.userprofile.address }}</p>
+        <p>City : {{ user.userprofile.city }}</p>
+        <p>State : {{ user.userprofile.state }}</p>
+        <p>Zipcode : {{ user.userprofile.zipcode }}</p>
+
+
+        <a href="{% url 'edit' %}" class="btn btn-primary">Edit</a>
+
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% include "base.html" %}
+
+{% block content %}
+    <style>
+
+
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        .btn-outline-success {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="jumbotron">
+            {% if registered %}
+                <h1>Thank you for registration...!!</h1>
+                <p>Please proceed to <a href="">Login</a></p>
+            {% else %}
+                <h1>Registration Form</h1>
+                <div class="card card-body">
+                    <form action="" method="POST" class="border border-0" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form1.as_p }}
+                        {{ form2.as_p }}
+                        <input type="submit" value="REGISTER" class="btn btn-outline-success">
+                    </form>
+                </div>
+                
+            {% endif %}
+        </div>
+    </div>
+
+    {% endblock content %}
