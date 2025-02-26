@@ -4,15 +4,15 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1>Add New Defects</h1>
+        <h1>Edit Defects</h1>
         <br>
         <form method="POST">
             
             <div class="form-group">
                 {% csrf_token %}
-                {{ items.as_p }}
+                {{ form.as_p }}
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Edit</button>
             </div>
         </form>
 

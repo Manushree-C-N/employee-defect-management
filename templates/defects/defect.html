@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,6 +57,7 @@
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top" style="height: 75px;">
         <div class="container-fluid"> 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -84,12 +86,21 @@
             </div>
         </div>
     </nav>
+
     <div class="content">
     {% block contents %}
 
     <div class="container">
         <div class="jumbotron">
-            <h1>List of All Defects....</h1>
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>List of All Defects....</h1>
+                </div>
+                <div class="col-md-5">
+                    <h1>Total defects count : {{ contexts.cmt }}</h1>
+                </div>
+            </div>
+            
             <br>
             <a class="btn btn-primary" href="{% url 'add' %}">Add &nbsp;<i class='bx bx-plus-circle'></i></a>
             <br><br>
@@ -101,13 +112,16 @@
                         <th>Defect Type</th>
                         <th>Assigned By</th>
                         <th>Assigned To</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                         <th>Description</th>
+                        <th>Status</th>
                         <th>Priority</th>
                     </tr>
                 </thead>
                 
                 <tbody>
-                  {% for i in defects%}
+                  {% for i in contexts.defects%}
                   
                     <tr class="table-info">
                         <td>{{i.defect_id}}</td>
@@ -115,9 +129,18 @@
                         <td>{{i.defect_type}}</td>
                         <td>{{i.assigned_by}}</td>
                         <td>{{i.assigned_to}}</td>
+                        <td><a href="{% url 'edit' id=i.id %}"><i class='bx bx-edit'></i></a></td>
+                        <td><a href="{% url 'deletes' id=i.id %}"><i class='bx bxs-trash'></i></a></td>
                         <td><a href="{% url 'descr' id=i.id %}">more info</a></td>
+                        <td>{{ i.defect_status }}</td>
+                        
                         {% if i.priority == 'HIGH' %}
-                            <td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAARdJREFUSEvVle0NwjAMRK+bwCYwCTAJMAlsApvAJsCLclUIDW1aFQn/iUTte/aRj0YzRzOzvroAW0nnDvBK0knSXdIurnnaIdaSEyIHXCQhdHx9JNkBFHEHAuRcE5Bz3mpTAIL7WLCOKzCg32IZcxcxl7WFGMCPt6iCOJ0NETcYy7A1nTSADXD3CAMgHhUbAMs8NVYCClMYYO/dvYEVjNYWTx6aNcDd5sAagKe33Uy1LAFq7Emb+ND7GSC3YuoErV7pqvhvQHroanYRuT7VRYsQ56Cwl8dEeuBCfemyGyPumvQ2+ACM/XPzhtrG8wm48LBpSnydYIpwZ+3QJ7Pr8ssfpUkAioFsooXc/bwBvTF0gl6hUsLsgCeagEQZ9+f34QAAAABJRU5ErkJggg=="/></td>
+                            <td><i class='bx bxs-bell-ring'></i></td>
+
+                        {% elif i.priority == 'MEDIUM' %}
+                            <td><i class='bx bxs-bell-plus'></i></td>
+                        {% else %}
+                            <td><i class='bx bxs-bell-minus' ></i></td>
                         {% endif %}
                     </tr>
                   {% endfor %}

@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from DefectsPortal.models import Defect
 
 # Create your views here.
 
@@ -63,7 +64,28 @@ def user_logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request,'dashboard.html')
+    total_defects = Defect.objects.all()
+    
+    total_assigned = 0
+    total_complete = 0
+    pending_defects = 0
+
+    for i in total_defects:
+        
+        if request.user.username == i.assigned_to:
+            total_assigned +=1
+        if i.defect_status == 'COMPLETED':
+            total_complete +=1
+        if i.defect_status == 'NOT COMPLETED':
+            pending_defects +=1      
+
+    context = {
+        'total_complete': total_complete,
+        'total_assigned': total_assigned,
+        'pending_defects': pending_defects
+    }
+
+    return render(request,'dashboard.html',context)
 
 @login_required(login_url='login')
 def userEdit(request):

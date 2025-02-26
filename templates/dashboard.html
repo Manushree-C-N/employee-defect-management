@@ -39,7 +39,30 @@
 
         <a href="{% url 'edit' %}" class="btn btn-primary">Edit</a>
 
-
+        <br><br><br>
+        <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col-md-4">
+                <div class="card card-body">
+                    <h5 class="card-title">Total Defects Assigned</h5>
+                    <h6>{{ total_assigned }}</h6>
+                </div>
+                
+              </div>
+              <div class="col-md-4">
+                <div class="card card-body">
+                    <h5 class="card-title">Total Defects Completed</h5>
+                    <h6> {{ total_complete }} </h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card card-body">
+                    <h5 class="card-title">Pending total details</h5>
+                    <h6> {{ pending_defects }} </h6>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
 </div>
 
