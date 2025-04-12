@@ -3,18 +3,21 @@ from django.shortcuts import render, redirect
 from DefectsPortal.models import Defect, Defects_screen_shots
 from DefectsPortal.forms import AddDefectForm, Defect_Edit_Form
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 @login_required(login_url='login')
 def defect(request):
     defects = Defect.objects.all()
-    cmt = 0
-    for i in defects:
-        cmt +=1
+    total_defects = len(defects)
+    paginator = Paginator(defects, 4)
+    page = request.GET.get('pg')
+    defects = paginator.get_page(page)
+
     contexts = {
         'defects': defects,
-        'cmt': cmt
+        'total_defects': total_defects
     }
     return render(request, 'defects/defect.html', {'contexts': contexts})
 

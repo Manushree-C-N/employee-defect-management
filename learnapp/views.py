@@ -69,20 +69,32 @@ def dashboard(request):
     total_assigned = 0
     total_complete = 0
     pending_defects = 0
-
+    total_primary = 0
+    total_secondary = 0
     for i in total_defects:
         
         if request.user.username == i.assigned_to:
             total_assigned +=1
-        if i.defect_status == 'COMPLETED':
-            total_complete +=1
-        if i.defect_status == 'NOT COMPLETED':
-            pending_defects +=1      
+            if i.defect_status == 'COMPLETED':
+                total_complete +=1
+            elif i.defect_status == 'NOT COMPLETED':
+                pending_defects +=1 
+        
+        if request.user.username == i.assigned_to:
+            
+            if i.defect_type == 'PRIMARY':
+                total_primary += 8000
+            elif i.defect_type == 'SECONDARY':
+                total_secondary += 4000
+    print(total_primary,total_secondary)
+
 
     context = {
         'total_complete': total_complete,
         'total_assigned': total_assigned,
-        'pending_defects': pending_defects
+        'pending_defects': pending_defects,
+        'total_primary': total_primary,
+        'total_secondary': total_secondary
     }
 
     return render(request,'dashboard.html',context)

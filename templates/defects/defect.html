@@ -97,7 +97,7 @@
                     <h1>List of All Defects....</h1>
                 </div>
                 <div class="col-md-5">
-                    <h1>Total defects count : {{ contexts.cmt }}</h1>
+                    <h1>Total defects count : {{ contexts.total_defects }}</h1>
                 </div>
             </div>
             
@@ -146,8 +146,27 @@
                   {% endfor %}
                 </tbody>
                 
-            </table>    
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="?pg=1"><<</a>
+                  </li>
+                  {% if contexts.defects.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?pg={{ contexts.defects.previous_page_number}}">{{ contexts.defects.previous_page_number }}</a></li>
+                  {% endif %}
+                  <li class="page-item"><a class="page-link" href="?pg={{ contexts.defects.number }}">{{ contexts.defects.number }}</a></li>
+                  {% if contexts.defects.has_next %}
+                  <li class="page-item"><a class="page-link" href="?pg={{ contexts.defects.next_page_number }}">{{ contexts.defects.next_page_number }}</a></li>
+                    {% endif %}
+                  <li class="page-item">
+                    <a class="page-link" href="?pg={{ contexts.defects.paginator.num_pages }}">>></a>
+                  </li>
+                </ul>
+              </nav>    
             <h6>Note:</h6>
+            <h6>If employee Fixed {{ request.user.username }} Primary Defect extre Rs.8000</h6>
+            <h6>If employee Fixed {{ request.user.username }} Secondary Defect extre Rs.4000</h6>
         </div>
     </div>
     {% endblock contents %}
