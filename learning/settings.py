@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     'learnapp',
     'django_recaptcha',
     'DefectsPortal',
+    
 ]
 
 # recaptcha keys
-RECAPTCHA_PUBLIC_KEY = '6LeJydUqAAAAAD9XnbUXXAj6_9EEMnc5VJvHitsN'
-RECAPTCHA_PRIVATE_KEY = '6LeJydUqAAAAAEkTXdYRB1WgIZmCNKAWLk2lPppi'
+RECAPTCHA_PUBLIC_KEY = '6LcPlBsrAAAAANLx4ER5Y7nrZv9CmWPjgqzmEnqU'
+RECAPTCHA_PRIVATE_KEY = '6LcPlBsrAAAAABpjiApBbam9ilaOKgIr1uTc7Epl'
 
 # password generator
 PASSWORD_HASHERS = [
